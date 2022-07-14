@@ -1,5 +1,6 @@
 {% set name = "pydeck" %}
 {% set version = "0.7.1" %}
+{% set sha256 = "907601c99f7510e16d27d7cb62bfa145216d166a2b5c9c50cfe2b65b032ebd2e" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 907601c99f7510e16d27d7cb62bfa145216d166a2b5c9c50cfe2b65b032ebd2e
+  sha256: {{ sha256 }}
 
 build:
   number: 0
@@ -17,14 +18,9 @@ build:
 requirements:
   host:
     - python 
-    - ipykernel
-    - ipython
-    - jinja2
     - pip
-    - python
-    - traitlets
-    - numpy >=1.16.4
     - setuptools <61
+    - wheel
   run:
     - python
     - ipykernel
@@ -49,7 +45,11 @@ about:
   license_family: MIT
   license_file: LICENSE.txt
   summary: Widget for deck.gl maps
+  description: |
+    The pydeck library is a set of Python bindings for making spatial visualizations
+    with deck.gl, optimized for a Jupyter environment.
   doc_url: https://pydeck.gl
+  doc_source_url: https://github.com/visgl/deck.gl/tree/master/bindings/pydeck/docs
   dev_url: https://github.com/uber/deck.gl/tree/master/bindings/pydeck
 
 extra:
