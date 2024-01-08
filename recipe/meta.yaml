@@ -18,8 +18,8 @@ build:
 
 requirements:
   build:
-    - patch  # [win]
-    - m2-patch  # [not win]
+    - patch  # [not win]
+    - m2-patch  # [win]
   host:
     - python 
     - pip
