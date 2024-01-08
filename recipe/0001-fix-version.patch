@@ -1,0 +1,10 @@
+--- pyproject.toml	2022-11-04 13:20:47.000000000 +0100
++++ pyproject.toml	2024-01-08 13:27:48.772803360 +0100
+@@ -1,6 +1,6 @@
+ [project]
+ name = "pydeck"
+-version = "0.8.0b4"
++version = "0.8.0"
+ requires-python = ">=3.7"
+ 
+ [build-system]
