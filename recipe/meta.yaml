@@ -12,7 +12,7 @@ source:
     - 0001-fix-version.patch
 
 build:
-  number: 1
+  number: 2
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   skip: true  # [py<37]
 
@@ -27,11 +27,14 @@ requirements:
     - wheel
   run:
     - python
-    - ipykernel >=5.1.2
-    - ipywidgets >=7,<8
     - jinja2 >=2.10.1
-    - traitlets >=4.3.2
     - numpy >=1.16.4
+  # jupyter dependencies are extra dependencies - no ipywidgets<8 for py312
+  # https://github.com/visgl/deck.gl/blob/v8.9.34/bindings/pydeck/setup.py#L209
+  run_constrained:      # [py>=312]
+    - traitlets >=4.3.2
+    - ipywidgets >=7,<8
+    - ipykernel >=5.1.2
 
 test:
   imports:
@@ -39,8 +42,8 @@ test:
     - pydeck.bindings
     - pydeck.data_utils
     - pydeck.io
-    - pydeck.nbextension
-    - pydeck.widget
+    - pydeck.nbextension  # [py<312]
+    - pydeck.widget       # [py<312]
   requires:
     - pip
   commands:
