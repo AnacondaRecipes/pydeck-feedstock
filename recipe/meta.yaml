@@ -31,7 +31,7 @@ requirements:
     - numpy >=1.16.4
   # jupyter dependencies are extra dependencies - no ipywidgets<8 for py312
   # https://github.com/visgl/deck.gl/blob/v8.9.34/bindings/pydeck/setup.py#L209
-  run_constrained:      # [py>=312]
+  run_constrained:
     - traitlets >=4.3.2
     - ipywidgets >=7,<8
     - ipykernel >=5.1.2
@@ -46,6 +46,9 @@ test:
     - pydeck.widget       # [py<312]
   requires:
     - pip
+    - traitlets >=4.3.2
+    - ipywidgets >=7,<8
+    - ipykernel >=5.1.2
   commands:
     - pip check
 
