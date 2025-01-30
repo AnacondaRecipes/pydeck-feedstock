@@ -1,0 +1,10 @@
+--- pyproject.toml	2025-01-30 16:04:14.521701022 +0000
++++ "pyproject copy.toml"	2025-01-30 16:05:18.818739010 +0000
+@@ -2,6 +2,7 @@
+ name = "pydeck"
+ version = "0.9.1"
+ requires-python = ">=3.8"
++dynamic = ["description", "readme", "license", "dependencies", "optional-dependencies"]
+ 
+ [build-system]
+ requires = [
