@@ -30,7 +30,7 @@ requirements:
     - jinja2 >=2.10.1
     - numpy >=1.16.4
   # jupyter dependencies are extra dependencies - no ipywidgets<8 for py312
-  # https://github.com/visgl/deck.gl/blob/v8.9.34/bindings/pydeck/setup.py#L209
+  # https://github.com/visgl/deck.gl/blob/v9.1.0/bindings/pydeck/setup.py
   run_constrained:
     - traitlets >=4.3.2
     - ipywidgets >=7,<8
@@ -42,13 +42,13 @@ test:
     - pydeck.bindings
     - pydeck.data_utils
     - pydeck.io
-    - pydeck.nbextension  # [py<312]
-    - pydeck.widget       # [py<312]
+    - pydeck.nbextension  # [py<313]
+    - pydeck.widget       # [py<313]
   requires:
     - pip
-    - traitlets >=4.3.2
-    - ipywidgets >=7,<8
-    - ipykernel >=5.1.2
+    - traitlets >=4.3.2   # [py<313]
+    - ipywidgets >=7,<8   # [py<313]
+    - ipykernel >=5.1.2   # [py<313]
   commands:
     - pip check
 
