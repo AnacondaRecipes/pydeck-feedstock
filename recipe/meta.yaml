@@ -1,5 +1,5 @@
 {% set name = "pydeck" %}
-{% set version = "0.8.0" %}
+{% set version = "0.9.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,14 +7,14 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 07edde833f7cfcef6749124351195aa7dcd24663d4909fd7898dbd0b6fbc01ec
+  sha256: f74475ae637951d63f2ee58326757f8d4f9cd9f2a457cf42950715003e2cb605
   patches:
-    - 0001-fix-version.patch
+    - patches/incomplete-pyproject.patch
 
 build:
-  number: 2
+  number: 0
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
-  skip: true  # [py<37]
+  skip: true  # [py<38]
 
 requirements:
   build:
@@ -29,9 +29,8 @@ requirements:
     - python
     - jinja2 >=2.10.1
     - numpy >=1.16.4
-  # jupyter dependencies are extra dependencies - no ipywidgets<8 for py312
-  # https://github.com/visgl/deck.gl/blob/v8.9.34/bindings/pydeck/setup.py#L209
-  run_constrained:      # [py>=312]
+  # https://github.com/visgl/deck.gl/blob/v9.1.0/bindings/pydeck/setup.py
+  run_constrained:
     - traitlets >=4.3.2
     - ipywidgets >=7,<8
     - ipykernel >=5.1.2
@@ -42,10 +41,13 @@ test:
     - pydeck.bindings
     - pydeck.data_utils
     - pydeck.io
-    - pydeck.nbextension  # [py<312]
-    - pydeck.widget       # [py<312]
+    - pydeck.nbextension  # [py<313 and (not s390x)]
+    - pydeck.widget       # [py<313 and (not s390x)]
   requires:
     - pip
+    - traitlets >=4.3.2   # [py<313 and (not s390x)]
+    - ipywidgets >=7,<8   # [py<313 and (not s390x)]
+    - ipykernel >=5.1.2   # [py<313 and (not s390x)]
   commands:
     - pip check
 
