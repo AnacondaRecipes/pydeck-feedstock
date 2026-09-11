@@ -10,14 +10,13 @@ source:
   sha256: c10d9035e81ead6385264cac8d19402471f6866a15ca1f7df1400f52142bcf87
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   skip: true  # [py<38]
 
 requirements:
   build:
     - patch  # [not win]
-    - m2-patch  # [win]
   host:
     - python 
     - pip
